@@ -4,42 +4,100 @@
         "id": 1,
         "pergunta": "Qual é o primeiro passo para implantar um controlador de domínio do AD DS?",
         "respostas": [
-            {"texto": "Configurar o nível funcional da floresta", "correta": false},
-            {"texto": "Instalar os binários necessários pelo Windows Admin Center ou pelo Gerenciador de Servidor", "correta": true},
-            {"texto": "Instalar o catálogo global", "correta": false},
-            {"texto": "Definir o nome do DNS para o domínio do AD DS", "correta": false}
-
+          { "texto": "Configurar o nível funcional da floresta", "correta": false },
+          { "texto": "Instalar os binários necessários pelo Windows Admin Center ou pelo Gerenciador de Servidor", "correta": true },
+          { "texto": "Instalar o catálogo global", "correta": false },
+          { "texto": "Definir o nome do DNS para o domínio do AD DS", "correta": false }
         ]
       },
       {
         "id": 2,
         "pergunta": "Qual é o nome do DNS para o domínio do AD DS?",
         "respostas": [
-            {"texto": "FQDN (nome de domínio totalmente qualificado)", "correta": true},
-            {"texto": "NetBIOS", "correta": false},
-            {"texto": "Servidor RODC", "correta": false}
+          { "texto": "FQDN (nome de domínio totalmente qualificado)", "correta": true },
+          { "texto": "NetBIOS", "correta": false },
+          { "texto": "Servidor RODC", "correta": false }
         ]
       },
       {
-        "id": 3, 
+        "id": 3,
         "pergunta": "Qual das seguintes opções define o nível funcional da floresta?",
         "respostas": [
-            {"texto": "Determina os sistemas operacionais do controlador de domínio suportados", "correta": true},
-            {"texto": "Define o nome do DNS para o domínio do AD DS", "correta": false},
-            {"texto": "Estabelece o local onde o banco de dados será criado", "correta": false},
-            {"texto": "Define a senha do Modo de Restauração dos Serviços de Diretório (DSRM)", "correta": false}
+          { "texto": "Determina os sistemas operacionais do controlador de domínio suportados", "correta": true },
+          { "texto": "Define o nome do DNS para o domínio do AD DS", "correta": false },
+          { "texto": "Estabelece o local onde o banco de dados será criado", "correta": false },
+          { "texto": "Define a senha do Modo de Restauração dos Serviços de Diretório (DSRM)", "correta": false }
         ]
-     },
-     {
+      },
+      {
         "id": 4,
         "pergunta": "Durante a configuração do AD DS, o que determina a necessidade de informações adicionais, como o nome do domínio pai?",
         "respostas": [
-            {"texto": "O nível funcional da floresta", "correta": false},
-            {"texto": "Se o controlador de domínio será um servidor DNS", "correta": false},
-            {"texto": "Se você está instalando uma nova floresta, árvore ou um controlador adicional", "correta": true},
-            {"texto": "O nome NetBIOS do domínio", "correta":false}
+          { "texto": "O nível funcional da floresta", "correta": false },
+          { "texto": "Se o controlador de domínio será um servidor DNS", "correta": false },
+          { "texto": "Se você está instalando uma nova floresta, árvore ou um controlador adicional", "correta": true },
+          { "texto": "O nome NetBIOS do domínio", "correta": false }
         ]
-     }
+      },
+      {
+        "id": 5,
+        "pergunta": "Quando o controlador de domínio pode ser configurado como um RODC (Controlador de Domínio Somente Leitura)?",
+        "respostas": [
+          { "texto": "Sempre", "correta": false },
+          { "texto": "Somente em locais remotos", "correta": false },
+          { "texto": "Não está disponível para o primeiro controlador de domínio em uma floresta", "correta": true },
+          { "texto": "Apenas se o nível funcional da floresta for o mais alto", "correta": false }
+        ]
+      },
+      {
+        "id": 6,
+        "pergunta": "Qual é a função do catálogo global em um controlador de domínio?",
+        "respostas": [
+          { "texto": "Ele fornece uma cópia somente leitura do banco de dados do AD DS", "correta": false },
+          { "texto": "Ele armazena todas as senhas de usuário", "correta": false },
+          { "texto": "Ele facilita a localização de objetos em qualquer parte da floresta", "correta": true },
+          { "texto": "Ele permite a comunicação entre domínios", "correta": false }
+        ]
+      },
+      {
+        "id": 7,
+        "pergunta": "Qual é o método recomendado para reduzir o tráfego WAN ao instalar controladores de domínio em locais remotos?",
+        "respostas": [
+          { "texto": "Instalar um RODC", "correta": false },
+          { "texto": "Criar um backup do AD DS e instalar por mídia", "correta": true },
+          { "texto": "Usar o Gerenciador de Servidor com uma conexão de alta velocidade", "correta": false },
+          { "texto": "Implantar um controlador de domínio adicional em um domínio existente", "correta": false }
+        ]
+      },
+      {
+        "id": 8,
+        "pergunta": "Ao implantar um controlador de domínio em uma filial sem segurança física garantida, qual opção pode reduzir o impacto de uma violação de segurança?",
+        "respostas": [
+          { "texto": "Instalar o controlador de domínio por mídia", "correta": false },
+          { "texto": "Configurar o DNS para endereços IP estáticos", "correta": false },
+          { "texto": "Implantar um RODC (Controlador de Domínio Somente Leitura)", "correta": true },
+          { "texto": "Usar um nível funcional de domínio mais alto", "correta": false }
+        ]
+      },
+      {
+        "id": 9,
+        "pergunta": "Qual método é o mais recomendado para atualizar controladores de domínio para o Windows Server 2022?",
+        "respostas": [
+          { "texto": "Atualizar o sistema operacional nos controladores existentes", "correta": false },
+          { "texto": "Adicionar servidores Windows Server 2022 como novos controladores de domínio", "correta": true },
+          { "texto": "Usar o Gerenciador de Servidor para atualizar os controladores", "correta": false },
+          { "texto": "Reinstalar o banco de dados do AD DS", "correta": false }
+        ]
+      },
+      {
+        "id": 10,
+        "pergunta": "Ao implantar o AD DS em VMs no Azure, qual consideração é importante para o endereçamento IP?",
+        "respostas": [
+          { "texto": "Usar endereços DHCP padrão fornecidos pelo Azure", "correta": false },
+          { "texto": "Configurar endereços IP estáticos para persistirem entre reinicializações", "correta": true },
+          { "texto": "Utilizar endereços dinâmicos para maior flexibilidade", "correta": false },
+          { "texto": "Configurar a rede para endereçamento IPv6", "correta": false }
+        ]
+      }
     ]
-  }
-  
+  }  
