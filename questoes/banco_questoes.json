@@ -1,0 +1,45 @@
+{
+    "perguntas": [
+      {
+        "id": 1,
+        "pergunta": "Qual é o primeiro passo para implantar um controlador de domínio do AD DS?",
+        "respostas": [
+            {"texto": "Configurar o nível funcional da floresta", "correta": false},
+            {"texto": "Instalar os binários necessários pelo Windows Admin Center ou pelo Gerenciador de Servidor", "correta": true},
+            {"texto": "Instalar o catálogo global", "correta": false},
+            {"texto": "Definir o nome do DNS para o domínio do AD DS", "correta": false}
+
+        ]
+      },
+      {
+        "id": 2,
+        "pergunta": "Qual é o nome do DNS para o domínio do AD DS?",
+        "respostas": [
+            {"texto": "FQDN (nome de domínio totalmente qualificado)", "correta": true},
+            {"texto": "NetBIOS", "correta": false},
+            {"texto": "Servidor RODC", "correta": false}
+        ]
+      },
+      {
+        "id": 3, 
+        "pergunta": "Qual das seguintes opções define o nível funcional da floresta?",
+        "respostas": [
+            {"texto": "Determina os sistemas operacionais do controlador de domínio suportados", "correta": true},
+            {"texto": "Define o nome do DNS para o domínio do AD DS", "correta": false},
+            {"texto": "Estabelece o local onde o banco de dados será criado", "correta": false},
+            {"texto": "Define a senha do Modo de Restauração dos Serviços de Diretório (DSRM)", "correta": false}
+        ]
+     },
+     {
+        "id": 4,
+        "pergunta": "Durante a configuração do AD DS, o que determina a necessidade de informações adicionais, como o nome do domínio pai?",
+        "respostas": [
+            {"texto": "O nível funcional da floresta", "correta": false},
+            {"texto": "Se o controlador de domínio será um servidor DNS", "correta": false},
+            {"texto": "Se você está instalando uma nova floresta, árvore ou um controlador adicional", "correta": true},
+            {"texto": "O nome NetBIOS do domínio", "correta":false}
+        ]
+     }
+    ]
+  }
+  

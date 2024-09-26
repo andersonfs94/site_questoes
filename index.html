@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Dinâmico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answer {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Dinâmico</h1>
+    <div id="quiz-container"></div>
+
+    <script>
+        // Função para carregar o JSON com as questões
+        async function carregarPerguntas() {
+            const response = await fetch('questoes/banco_questoes.json');
+            const data = await response.json();
+            return data.perguntas;
+        }
+
+        // Função para exibir as perguntas no HTML
+        function exibirPerguntas(perguntas) {
+            const container = document.getElementById('quiz-container');
+            perguntas.forEach(pergunta => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+                questionDiv.innerHTML = `<p><strong>${pergunta.pergunta}</strong></p>`;
+
+                pergunta.respostas.forEach((resposta, index) => {
+                    const label = document.createElement('label');
+                    label.classList.add('answer');
+                    label.innerText = resposta.texto;
+                    label.addEventListener('click', () => verificarResposta(label, resposta.correta));
+                    questionDiv.appendChild(label);
+                });
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        // Função para verificar se a resposta está correta
+        function verificarResposta(label, isCorrect) {
+            if (isCorrect) {
+                label.classList.add('correct');
+            } else {
+                label.classList.add('incorrect');
+            }
+
+            // Desabilitar todas as opções após a escolha
+            const answers = label.parentElement.querySelectorAll('.answer');
+            answers.forEach(answer => {
+                answer.style.pointerEvents = 'none'; // desabilitar os cliques nas respostas
+            });
+        }
+
+        // Carregar e exibir as perguntas ao iniciar a página
+        carregarPerguntas().then(perguntas => exibirPerguntas(perguntas));
+    </script>
+</body>
+</html>
