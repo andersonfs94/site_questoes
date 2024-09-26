@@ -14,7 +14,7 @@
         }
         .answer {
             display: block;
-            margin: 5px 0;
+            margin: 10px 0; /* Adiciona margem entre respostas */
             cursor: pointer;
         }
         .correct {
@@ -27,11 +27,14 @@
             display: none;
         }
         .pergunta {
-             margin-bottom: 20px;
+            margin-bottom: 20px;
         }
         .resposta label {
             cursor: pointer;
             font-size: 16px;
+        }
+        .resposta {
+            margin-bottom: 10px; /* Espaço extra entre as respostas */
         }
     </style>
 </head>
@@ -41,111 +44,63 @@
     <script>
         // Função para embaralhar array (Fisher-Yates)
         function embaralhar(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
         }
 
         // Função para carregar e exibir perguntas
         function carregarPerguntas() {
-        fetch('questoes/banco_questoes.json')
-            .then(response => response.json())
-            .then(data => {
-            const perguntas = data.perguntas;
-            perguntas.forEach(pergunta => {
-                // Embaralhar as respostas
-                const respostasEmbaralhadas = embaralhar([...pergunta.respostas]);
+            fetch('questoes/banco_questoes.json')
+                .then(response => response.json())
+                .then(data => {
+                    const perguntas = data.perguntas;
+                    perguntas.forEach(pergunta => {
+                        // Embaralhar as respostas
+                        const respostasEmbaralhadas = embaralhar([...pergunta.respostas]);
 
-                // Criar div para a pergunta
-                const perguntaDiv = document.createElement('div');
-                perguntaDiv.classList.add('pergunta');
-                perguntaDiv.innerHTML = `<h3>${pergunta.pergunta}</h3>`;
+                        // Criar div para a pergunta
+                        const perguntaDiv = document.createElement('div');
+                        perguntaDiv.classList.add('pergunta');
+                        perguntaDiv.innerHTML = `<h3>${pergunta.pergunta}</h3>`;
 
-                // Criar as opções de resposta
-                respostasEmbaralhadas.forEach(resposta => {
-                const respostaDiv = document.createElement('div');
-                respostaDiv.classList.add('resposta');
-                respostaDiv.innerHTML = `
-                    <label>
-                    <input type="radio" name="pergunta${pergunta.id}" value="${resposta.correta}">
-                    ${resposta.texto}
-                    </label>
-                `;
+                        // Criar as opções de resposta
+                        respostasEmbaralhadas.forEach(resposta => {
+                            const respostaDiv = document.createElement('div');
+                            respostaDiv.classList.add('resposta');
+                            respostaDiv.innerHTML = `
+                                <label>
+                                    <input type="radio" name="pergunta${pergunta.id}" value="${resposta.correta}">
+                                    ${resposta.texto}
+                                </label>
+                            `;
 
-          // Adicionar evento de clique para verificar a resposta
-          respostaDiv.addEventListener('click', function () {
-            const inputs = perguntaDiv.querySelectorAll('input');
+                            // Adicionar evento de clique para verificar a resposta
+                            respostaDiv.addEventListener('click', function () {
+                                const inputs = perguntaDiv.querySelectorAll('input');
 
-            // Desabilitar todos os inputs para evitar mudanças após a escolha
-            inputs.forEach(input => {
-              input.disabled = true;
-              if (input.value === 'true') {
-                input.parentElement.style.color = 'green';  // Marca correta em verde
-              } else {
-                input.parentElement.style.color = 'red';  // Marca incorreta em vermelho
-              }
-            });
-          });
+                                // Alterar o estilo das respostas após o clique
+                                inputs.forEach(input => {
+                                    if (input.value === 'true') {
+                                        input.parentElement.style.color = 'green';  // Marca correta em verde
+                                    } else {
+                                        input.parentElement.style.color = 'red';  // Marca incorreta em vermelho
+                                    }
+                                });
+                            });
 
-          perguntaDiv.appendChild(respostaDiv);
-        });
+                            perguntaDiv.appendChild(respostaDiv);
+                        });
 
-        document.getElementById('perguntasContainer').appendChild(perguntaDiv);
-      });
-    });
-}
-
-// Chamar a função para carregar as perguntas
-carregarPerguntas();
-        // Função para exibir as perguntas no HTML
-        function exibirPerguntas(perguntas) {
-            const container = document.getElementById('quiz-container');
-            perguntas.forEach(pergunta => {
-                const questionDiv = document.createElement('div');
-                questionDiv.classList.add('question');
-                questionDiv.innerHTML = `<p><strong>${pergunta.pergunta}</strong></p>`;
-
-                pergunta.respostas.forEach((resposta, index) => {
-                    const label = document.createElement('label');
-                    label.classList.add('answer');
-                    label.innerText = resposta.texto;
-                    label.addEventListener('click', () => verificarResposta(label, resposta.correta));
-                    questionDiv.appendChild(label);
+                        document.getElementById('perguntasContainer').appendChild(perguntaDiv);
+                    });
                 });
-
-                container.appendChild(questionDiv);
-            });
         }
 
-        // Função para verificar se a resposta está correta
-        function verificarResposta(label, isCorrect) {
-            if (isCorrect) {
-                label.classList.add('correct');
-            } else {
-                label.classList.add('incorrect');
-            }
-
-            // Desabilitar todas as opções após a escolha
-            const answers = label.parentElement.querySelectorAll('.answer');
-            answers.forEach(answer => {
-                answer.style.pointerEvents = 'none'; // desabilitar os cliques nas respostas
-            });
-        }
-
-        // Carregar e exibir as perguntas ao iniciar a página
-        carregarPerguntas().then(perguntas => exibirPerguntas(perguntas));
-
-        // Função para embaralhar array (Fisher-Yates)
-        function embaralhar(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-        }
-
+        // Chamar a função para carregar as perguntas
+        carregarPerguntas();
     </script>
 </body>
 </html>
